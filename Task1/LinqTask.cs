@@ -154,18 +154,18 @@ namespace Task1
         public static IEnumerable<Linq7CategoryGroup> Linq7(IEnumerable<Product> products)
         {
             var result = products
-                 .GroupBy(product => product.Category) // Group products by category
+                 .GroupBy(product => product.Category) 
                  .Select(categoryGroup => new Linq7CategoryGroup
                  {
                      Category = categoryGroup.Key,
                      UnitsInStockGroup = categoryGroup
-                         .GroupBy(product => product.UnitsInStock) // Group products within each category by units in stock
-                         .OrderBy(unitsGroup => unitsGroup.Key) // Order by units in stock
+                         .GroupBy(product => product.UnitsInStock) 
+                         .OrderBy(unitsGroup => unitsGroup.Key) 
                          .Select(unitsGroup => new Linq7UnitsInStockGroup
                          {
                              UnitsInStock = unitsGroup.Key,
                              Prices = unitsGroup
-                                 .OrderBy(product => product.UnitPrice) // Order by unit price
+                                 .OrderBy(product => product.UnitPrice) 
                                  .Select(product => product.UnitPrice)
                          })
                  });
